@@ -1,0 +1,18 @@
+Version:Ubuntu 22.10 LTS
+
+Note: KVM Hypervisor supports all  64-bit server / desktop class CPUs like the G5, POWER4 and above, Cell, 970MP, and 32-bit desktop class CPUs and etc.
+Supports Ubuntu versions starting from 20.04 LTS
+
+1)sudo apt-get update && apt-get upgrade (As always)
+2)egrep -c '(vmx|svm)' /proc/cpuinfo (Checking if Virtualization is enabled)
+3)kvm-ok (checking if it KVM virtualization is avaliable for you system)
+4)sudo apt install -y cpu-checker
+5)sudo apt install -y qemu-kvm virt-manager libvirt-daemon-system virtinst libvirt-clients bridge-utils (install KVM and additional virtualization packages on Ubuntu 22.04)
+6)sudo systemctl enable --now libvirtd (enabling the virtualization daemon)
+7)sudo systemctl start libvirtd (starting libvirtd)
+8)sudo systemctl status libvirtd (confirming that the virtualization daemon is running)
+
+Optional:
+You can add the currently logged-in user to the KVM and libvirt groups so that they can create and manage virtual machines.
+1)sudo usermod -aG kvm $username
+2)sudo usermod -aG libvirt $username
