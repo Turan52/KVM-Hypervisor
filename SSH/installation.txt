@@ -1,0 +1,30 @@
+Version: Ubuntu 22.10 LTS
+
+1)sudo apt update && sudo apt upgrade
+2)sudo apt install openssh-server (OpenSSH installation)
+3)sudo systemctl enable --now ssh (enabling OpenSSH)
+4)sudo systemctl status ssh (checking status of ssh)
+5)ssh username@ip-address/hostname (Ip-address you can check using "ifconfig")
+
+Note: SSH without password does not work after upgrading from 18.04 to 22.04.
+Summary of the steps I have always performed and have always worked:
+
+1)ssh-keygen -t rsa
+2)cat .ssh/id_rsa.pub | ssh -p 1331 user@server 'cat >> .ssh/authorized_keys'
+
+"authorized_keys" - If you don't have this file, you will need to create this file.
+
+Also,you have to create the ".ssh" directory and the "authorized_keys" file the first time.
+
+Create the .ssh directory:
+
+mkdir ~/.ssh
+Set the right permissions:
+
+chmod 700 ~/.ssh
+Create the authorized_keys file:
+
+touch ~/.ssh/authorized_keys
+Set the right permissions:
+
+chmod 600 ~/.ssh/authorized_keys
